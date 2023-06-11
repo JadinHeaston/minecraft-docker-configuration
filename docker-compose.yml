@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  minecraft-test:
+    image: itzg/minecraft-server
+    ports:
+      - 25560:25565
+    environment:
+      EULA: "TRUE"
+      SERVER_NAME: "minecraft-example"
+      DIFFICULTY: "normal"
+      MAX_PLAYERS: 1
+      MEMORY: 10G
+      MODE: survival
+      VIEW_DISTANCE: 32
+      ENABLE_AUTOPAUSE: TRUE
+      MAX_TICK_TIME: -1 #Must be set to -1 or high if autopause is enabled.
+      PVP: TRUE
+    tty: TRUE
+    stdin_open: TRUE
+    restart: unless-stopped
+    volumes:
+      # attach a directory relative to the directory containing this compose file
+      - ./minecraft-data:/data
